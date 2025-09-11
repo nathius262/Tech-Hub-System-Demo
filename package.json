@@ -24,9 +24,14 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
   },
   "dependencies": {
-    "@nathius262/nexusjs": "^0.0.17"
+    "@nathius262/nexusjs": "^0.0.17",
+    "handlebars-helpers": "^0.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
