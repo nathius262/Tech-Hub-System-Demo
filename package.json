@@ -1,0 +1,29 @@
+{
+  "name": "tech-hub-system-demo",
+  "version": "1.0.0",
+  "description": "The **Tech Hub System Demo** is a web-based platform that provides students with access to a variety of technology-related services and courses. Students can **browse available services**, **enroll in courses**, and **track their learning progress** via a personalized dashboard. The system will also allow administrators to **manage courses, services, and student records**.",
+  "keywords": [
+    "course",
+    "management",
+    "system",
+    "user",
+    "authentication",
+    "tech",
+    "hub"
+  ],
+  "homepage": "https://github.com/Nathius262/Tech-Hub-System-Demo#readme",
+  "bugs": {
+    "url": "https://github.com/Nathius262/Tech-Hub-System-Demo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nathius262/Tech-Hub-System-Demo.git"
+  },
+  "license": "MIT",
+  "author": "nathius262",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
