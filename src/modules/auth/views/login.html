@@ -3,14 +3,14 @@
   <div class="login-container">
     <!-- Logo -->
     <div class="text-center mb-4">
-      <img width="150" src="https://via.placeholder.com/150x60/800020/ffffff?text=Petra+ICT+Hub" alt="Petra ICT Hub">
+      <img width="150" src="/assets/img/logo.png" alt="TechHub Logo">
     </div>
 
     <!-- Role Toggle -->
     <div class="btn-group mb-4 w-100 d-flex justify-content-center" role="group" aria-label="Role toggle">
       <button type="button" class="btn btn-outline-primary role-btn active" data-role="admin">Admin</button>
-      <button type="button" class="btn btn-outline-primary role-btn" data-role="student">Student</button>
-      <button type="button" class="btn btn-outline-primary role-btn" data-role="instructor">Instructor</button>
+      <button type="button" class="btn btn-outline-primary role-btn" data-role="user">User</button>
+      <button type="button" class="btn btn-outline-primary role-btn" data-role="staff">Staff</button>
     </div>
 
     <!-- Heading -->
@@ -48,28 +48,6 @@
 </main>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // Role toggle functionality
-    const roleButtons = document.querySelectorAll('.role-btn');
-    const roleHeading = document.getElementById('roleHeading');
-    const authForm = document.getElementById('authForm');
-
-    roleButtons.forEach(button => {
-      button.addEventListener('click', function () {
-        // Remove active class from all buttons
-        roleButtons.forEach(btn => btn.classList.remove('active'));
-
-        // Add active class to clicked button
-        this.classList.add('active');
-
-        // Update heading
-        const role = this.getAttribute('data-role');
-        roleHeading.textContent = role.charAt(0).toUpperCase() + role.slice(1);
-
-        // Update form action (you can implement this based on your needs)
-        authForm.action = `/auth/${role}/login`;
-      });
-    });
-
     // Password visibility toggle
     const passwordToggle = document.querySelector('.password-toggle');
     const passwordInput = document.querySelector('input[name="password"]');
@@ -95,11 +73,13 @@
 
       this.classList.add('was-validated');
 
-      // If form is valid, show loading spinner
-      if (this.checkValidity()) {
-        document.getElementById('status').classList.remove('d-none');
-        document.querySelector('.login-btn').disabled = true;
-      }
+      // // If form is valid, show loading spinner
+      // if (this.checkValidity()) {
+      //   document.getElementById('status').classList.remove('d-none');
+      //   document.querySelector('.login-btn').disabled = true;
+      // }
     });
   });
 </script>
+
+<script type="module" src="/assets/js/authenticate.js"></script>

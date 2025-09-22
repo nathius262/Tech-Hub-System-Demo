@@ -31,7 +31,7 @@ export const generateToken = (user, role) => {
 };
 
 // ---------- Generic Registration ----------
-export const registerUserService = async ({ first_name, last_name, email, password, bio }, role) => {
+export const registerUserService = async ({ first_name, last_name, email, password, bio, phone_number }, role) => {
   const existingUser = await db.User.findOne({ where: { email } });
   if (existingUser) throw new Error('Email already registered');
 
@@ -42,6 +42,7 @@ export const registerUserService = async ({ first_name, last_name, email, passwo
     last_name,
     email,
     password: hashedPassword,
+    phone_number,
     bio,
     avatar_url: '/assets/img/profile.png',
   });
