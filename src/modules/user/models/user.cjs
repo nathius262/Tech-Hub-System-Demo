@@ -30,6 +30,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 'N/A',
     },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      defaultValue: 'user' + Math.floor(Math.random() * 10000), // fallback username but not ideal for production because of potential collisions
+    },
     bio: {
       type: DataTypes.TEXT,
       allowNull: true,

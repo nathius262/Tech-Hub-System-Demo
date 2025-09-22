@@ -1,0 +1,368 @@
+<style>
+/* User Profile Styles */
+main.py-5 {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.dashboard-card {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+    background: white;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+.dashboard-card .card-header {
+    background: white;
+    border-bottom: 1px solid #eaeaea;
+    padding: 1.25rem 1.5rem;
+}
+
+.dashboard-card .card-body {
+    padding: 1.5rem;
+}
+
+.dashboard-card .card-header h5,
+.dashboard-card .card-header h6 {
+    color: #800020;
+    margin: 0;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #4A4A4A;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: all 0.3s;
+}
+
+.form-control:focus {
+    border-color: #800020;
+    box-shadow: 0 0 0 0.2rem rgba(128, 0, 32, 0.25);
+}
+
+.btn-primary {
+    background-color: #800020;
+    border-color: #800020;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: #67001a;
+    border-color: #67001a;
+}
+
+.btn-outline-primary {
+    color: #800020;
+    border-color: #800020;
+}
+
+.btn-outline-primary:hover {
+    background-color: #800020;
+    color: white;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d;
+}
+
+.badge {
+    padding: 0.5em 0.75em;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.bg-success {
+    background-color: #28a745 !important;
+}
+
+.bg-warning {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+}
+
+.progress {
+    height: 8px;
+    border-radius: 4px;
+    background-color: #e9ecef;
+    margin-bottom: 0.25rem;
+}
+
+.progress-bar {
+    background-color: #800020;
+    border-radius: 4px;
+}
+
+.table {
+    color: #4A4A4A;
+}
+
+.table th {
+    font-weight: 600;
+    color: #4A4A4A;
+    border-top: none;
+    border-bottom: 2px solid #800020;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(128, 0, 32, 0.05);
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.rounded-circle {
+    border: 3px solid #800020;
+    padding: 4px;
+    background: white;
+}
+
+.text-end {
+    text-align: right;
+}
+
+.d-grid {
+    display: grid;
+}
+
+.gap-2 {
+    gap: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-card .card-body {
+        padding: 1.25rem;
+    }
+    
+    .btn-primary {
+        padding: 0.5rem 1rem;
+    }
+}
+</style>
+
+<main class="py-5">
+  <div class="container">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-lg-4 mb-4">
+        <div class="dashboard-card">
+          <div class="card-body text-center">
+            <div class="mb-4">
+              <img src="https://via.placeholder.com/150x150/800020/ffffff?text=U" alt="User" class="rounded-circle" width="120" height="120">
+            </div>
+            <h4 class="mb-1">John Smith</h4>
+            <p class="text-muted mb-3">john.smith@example.com</p>
+            <div class="d-grid gap-2">
+              <button class="btn btn-outline-primary">
+                <i class="fas fa-camera me-2"></i>Change Photo
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card mt-4">
+          <div class="card-header">
+            <h6 class="m-0 font-weight-bold">Account Status</h6>
+          </div>
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span>Email Verified</span>
+              <span class="badge bg-success">Verified</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span>Profile Complete</span>
+              <span class="badge bg-warning text-dark">80%</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span>Member Since</span>
+              <span class="text-muted">Jan 15, 2023</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-lg-8">
+        <div class="dashboard-card mb-4">
+          <div class="card-header">
+            <h5 class="m-0 font-weight-bold">Profile Information</h5>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label class="form-label">First Name</label>
+                  <input type="text" class="form-control" value="John">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Last Name</label>
+                  <input type="text" class="form-control" value="Smith">
+                </div>
+              </div>
+              
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label class="form-label">Email Address</label>
+                  <input type="email" class="form-control" value="john.smith@example.com">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Phone Number</label>
+                  <input type="tel" class="form-control" value="+1 (555) 123-4567">
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label class="form-label">Bio</label>
+                <textarea class="form-control" rows="3">Web developer with 5 years of experience specializing in front-end development. Currently learning React and Node.js.</textarea>
+              </div>
+              
+              <div class="text-end">
+                <button type="button" class="btn btn-primary">Update Profile</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="dashboard-card mb-4">
+          <div class="card-header">
+            <h5 class="m-0 font-weight-bold">Change Password</h5>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="mb-3">
+                <label class="form-label">Current Password</label>
+                <div class="position-relative">
+                  <input type="password" class="form-control">
+                  <i class="fa-regular fa-eye password-toggle"></i>
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label class="form-label">New Password</label>
+                <div class="position-relative">
+                  <input type="password" class="form-control">
+                  <i class="fa-regular fa-eye password-toggle"></i>
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label class="form-label">Confirm New Password</label>
+                <div class="position-relative">
+                  <input type="password" class="form-control">
+                  <i class="fa-regular fa-eye password-toggle"></i>
+                </div>
+              </div>
+              
+              <div class="text-end">
+                <button type="button" class="btn btn-primary">Update Password</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h5 class="m-0 font-weight-bold">Enrolled Courses</h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Course</th>
+                    <th>Progress</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Web Development Fundamentals</td>
+                    <td>
+                      <div class="progress" style="height: 8px;">
+                        <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>75% Complete</small>
+                    </td>
+                    <td><span class="badge bg-success">Active</span></td>
+                    <td><button class="btn btn-sm btn-outline-primary">Continue</button></td>
+                  </tr>
+                  <tr>
+                    <td>React.js Masterclass</td>
+                    <td>
+                      <div class="progress" style="height: 8px;">
+                        <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>30% Complete</small>
+                    </td>
+                    <td><span class="badge bg-success">Active</span></td>
+                    <td><button class="btn btn-sm btn-outline-primary">Continue</button></td>
+                  </tr>
+                  <tr>
+                    <td>Node.js Backend Development</td>
+                    <td>
+                      <div class="progress" style="height: 8px;">
+                        <div class="progress-bar" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>10% Complete</small>
+                    </td>
+                    <td><span class="badge bg-success">Active</span></td>
+                    <td><button class="btn btn-sm btn-outline-primary">Continue</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Password visibility toggle
+      const passwordToggles = document.querySelectorAll('.password-toggle');
+      
+      passwordToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+          const passwordInput = this.previousElementSibling;
+          
+          if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            this.classList.remove('fa-eye');
+            this.classList.add('fa-eye-slash');
+          } else {
+            passwordInput.type = 'password';
+            this.classList.remove('fa-eye-slash');
+            this.classList.add('fa-eye');
+          }
+        });
+      });
+    });
+  </script>
+</main>

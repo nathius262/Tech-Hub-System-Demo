@@ -20,10 +20,25 @@ export const findAll = async (req, res) => {
 export const findById = async (req, res) => {
   try {
     const data = await service.findById(req.params.id);
-    res.status(200).render('./product_single', {
+    res.status(200).render('./user_profile', {
       success: true,
-      pageTitle: "Details",
-      user: [data],
+      pageTitle: "Profile",
+      layout: 'user',
+      user: data,
+    });
+  } catch (err) {
+    res.status(404).render('error', { error: err.message });
+  }
+};
+
+export const dashboard = async (req, res) => {
+  try {
+    //const data = await service.findById(req.params.id);
+    res.status(200).render('./user_dashboard', {
+      success: true,
+      layout: 'user',
+      pageTitle: "Dashboard",
+      //user: [data],
     });
   } catch (err) {
     res.status(404).render('error', { error: err.message });
