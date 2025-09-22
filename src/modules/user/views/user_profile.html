@@ -173,10 +173,10 @@ main.py-5 {
         <div class="dashboard-card">
           <div class="card-body text-center">
             <div class="mb-4">
-              <img src="https://via.placeholder.com/150x150/800020/ffffff?text=U" alt="User" class="rounded-circle" width="120" height="120">
+              <img src="{{user.avatar_url}}" alt="User" class="rounded-circle" width="120" height="120">
             </div>
-            <h4 class="mb-1">John Smith</h4>
-            <p class="text-muted mb-3">john.smith@example.com</p>
+            <h4 class="mb-1">{{user.first_name}} {{user.last_name}}</h4>
+            <p class="text-muted mb-3">{{user.email}}</p>
             <div class="d-grid gap-2">
               <button class="btn btn-outline-primary">
                 <i class="fas fa-camera me-2"></i>Change Photo
@@ -213,38 +213,84 @@ main.py-5 {
             <h5 class="m-0 font-weight-bold">Profile Information</h5>
           </div>
           <div class="card-body">
-            <form>
+            <form id="update-profile-form" class="was-validated" novalidate method="post" action="/user/{{user.id}}">
               <div class="row mb-3">
                 <div class="col-md-6">
                   <label class="form-label">First Name</label>
-                  <input type="text" class="form-control" value="John">
+                  <input name="first_name" type="text" class="form-control" value="{{user.first_name}}">
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Last Name</label>
-                  <input type="text" class="form-control" value="Smith">
+                  <input name="last_name" type="text" class="form-control" value="{{user.last_name}}">
                 </div>
               </div>
               
               <div class="row mb-3">
                 <div class="col-md-6">
                   <label class="form-label">Email Address</label>
-                  <input type="email" class="form-control" value="john.smith@example.com">
+                  <input name="email" type="email" class="form-control" value="{{user.email}}">
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Phone Number</label>
-                  <input type="tel" class="form-control" value="+1 (555) 123-4567">
+                  <input name="phone_number" type="tel" class="form-control" value="{{user.phone_number}}">
                 </div>
               </div>
               
               <div class="mb-3">
                 <label class="form-label">Bio</label>
-                <textarea class="form-control" rows="3">Web developer with 5 years of experience specializing in front-end development. Currently learning React and Node.js.</textarea>
+                <textarea name="bio" class="form-control" rows="3">{{user.bio}}</textarea>
               </div>
+
+
+              <div id="error" class="text-danger d-none"></div>
               
               <div class="text-end">
-                <button type="button" class="btn btn-primary">Update Profile</button>
+                <button type="submit" id="btn" class="btn btn-primary">Update Profile</button>
               </div>
             </form>
+
+            <script>
+             const form = document.getElementById('update-profile-form');
+              const btn = document.getElementById('btn');
+              const error_div = document.getElementById('error'); 
+
+              form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                btn.innerHTML = 'Updating...';
+                btn.disabled = true;
+
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                try {
+                  const response = await fetch(form.action, {
+                    method: 'PUT',
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                  });
+
+                  const result = await response.json();
+
+                  if (response.ok) {
+                    btn.innerHTML = 'Updated';
+                    setTimeout(() => {
+                      btn.innerHTML = 'Update Profile';
+                      btn.disabled = false;
+                    }, 2000);
+                  } else {
+                    throw new Error(result.message || result.error || 'Failed to update profile');
+                  }
+                } catch (error) {
+                  error_div.classList.remove('d-none');
+                  error_div.innerHTML = error.message;
+                  btn.innerHTML = 'Update Profile';
+                  btn.disabled = false;
+                }
+              });
+            </script>
           </div>
         </div>
 
