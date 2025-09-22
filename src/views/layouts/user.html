@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - TechHub</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #800020; /* Maroon */
+            --secondary: #4A4A4A; /* Dark Gray */
+            --accent: #FFD700; /* Gold */
+            --light: #F8F9FA;
+            --dark: #212529;
+            --sidebar-width: 250px;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--secondary);
+            background-color: #f5f7f9;
+            overflow-x: hidden;
+        }
+        
+        /* Sidebar */
+        #sidebar {
+            width: var(--sidebar-width);
+            background: var(--primary);
+            color: white;
+            height: 100vh;
+            position: fixed;
+            transition: all 0.3s;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        #sidebar .sidebar-header {
+            padding: 1.5rem 1rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        #sidebar ul.components {
+            padding: 1rem 0;
+        }
+        
+        #sidebar ul li a {
+            padding: 1rem 1.5rem;
+            display: block;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        #sidebar ul li a:hover {
+            color: white;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        #sidebar ul li.active > a {
+            color: white;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        #sidebar ul li a i {
+            margin-right: 0.5rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Main Content */
+        #content {
+            width: calc(100% - var(--sidebar-width));
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            transition: all 0.3s;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar .search-form {
+            position: relative;
+        }
+        
+        .navbar .search-form input {
+            padding-left: 2.5rem;
+            border-radius: 20px;
+        }
+        
+        .navbar .search-form i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+        
+        /* Cards */
+        .dashboard-card {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-title {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Charts */
+        .chart-container {
+            position: relative;
+            height: 250px;
+        }
+        
+        /* Tables */
+        .table th {
+            font-weight: 600;
+            color: var(--secondary);
+            border-top: none;
+        }
+        
+        .table-hover tbody tr:hover {
+            background-color: rgba(128, 0, 32, 0.05);
+        }
+        
+        .badge-success {
+            background-color: #28a745;
+        }
+        
+        .badge-warning {
+            background-color: #ffc107;
+        }
+        
+        .badge-danger {
+            background-color: #dc3545;
+        }
+        
+        /* Toggle button for sidebar */
+        #sidebarCollapse {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            #sidebar {
+                margin-left: -var(--sidebar-width);
+            }
+            
+            #sidebar.active {
+                margin-left: 0;
+            }
+            
+            #content {
+                width: 100%;
+                margin-left: 0;
+            }
+            
+            #content.active {
+                width: calc(100% - var(--sidebar-width));
+                margin-left: var(--sidebar-width);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>TechHub</h3>
+            <strong>TH</strong>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="/user/dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+            </li>
+            
+            <li>
+                <a href="#">
+                    <i class="fas fa-book"></i>
+                    Courses
+                </a>
+            </li>
+            
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-bar"></i>
+                    My Progress
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-cog"></i>
+                    Profile Settings
+                </a>
+            </li>
+        </ul>
+
+        <div class="px-3 py-4">
+            <div class="d-grid gap-2">
+                <a href="/auth/logout" class="btn btn-outline-light">
+                    <i class="fas fa-sign-out-alt me-2"></i> Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+     
+     
+    <!-- Main Content -->
+    <div id="content">
+        {{> user/top_navbar }}
+        {{{body}}}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sidebar toggle
+            document.getElementById('sidebarCollapse').addEventListener('click', function() {
+                document.getElementById('sidebar').classList.toggle('active');
+                document.getElementById('content').classList.toggle('active');
+            });
+            
+            // Enrollment chart
+            const enrollmentCtx = document.getElementById('enrollmentChart').getContext('2d');
+            const enrollmentChart = new Chart(enrollmentCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Enrollments',
+                        data: [65, 59, 80, 81, 56, 72],
+                        backgroundColor: 'rgba(128, 0, 32, 0.1)',
+                        borderColor: 'rgba(128, 0, 32, 1)',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // Revenue chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            const revenueChart = new Chart(revenueCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Web Dev', 'Data Science', 'Cyber Security', 'UI/UX Design'],
+                    datasets: [{
+                        data: [35, 25, 20, 20],
+                        backgroundColor: [
+                            'rgba(128, 0, 32, 0.8)',
+                            'rgba(128, 0, 32, 0.6)',
+                            'rgba(128, 0, 32, 0.4)',
+                            'rgba(128, 0, 32, 0.2)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    cutout: '70%'
+                }
+            });
+        });
+    </script>
+</body>
+</html>

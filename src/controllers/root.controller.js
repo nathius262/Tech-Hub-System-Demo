@@ -27,5 +27,27 @@ const index_view = async (req, res) => {
     }
 };
 
+const about_view = async (req, res) => {
+    try {
+        res.render('about', {
+            pageTitle: "About",
+            pageLogo: page_logo
+        });
+    } catch (error) {
+        res.render('./errors/500', {message: "Internal Serval Error"});
+    }
+}
 
-export {index_view}
+const contact_view = async (req, res) => {
+    try {
+        res.render('contact', {
+            pageTitle: "Contact",
+            pageLogo: page_logo
+        });
+    } catch (error) {
+        res.render('./errors/500', {message: "Internal Serval Error"});
+    }
+}
+
+
+export {index_view, about_view, contact_view}
