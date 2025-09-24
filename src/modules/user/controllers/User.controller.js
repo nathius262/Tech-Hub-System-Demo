@@ -44,3 +44,13 @@ export const dashboard = async (req, res) => {
     res.status(404).render('error', { error: err.message });
   }
 };
+
+export const update = async (req, res) => {
+  try {
+    const data = await service.update(req.params.id, req.body);
+    req.flash('success', 'User updated successfully');
+    res.status(200).json({ message: 'User updated successfully', user: data, redirectTo: `/user/${data.id}` });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

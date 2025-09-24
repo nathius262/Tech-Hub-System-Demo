@@ -17,5 +17,6 @@ router.get('/', (req, res) => {
 router.get('/dashboard', controller.dashboard);
 
 router.get('/:id', controller.findById);
+router.put('/:id', controller.update);
 
 export default router;

@@ -250,7 +250,7 @@ main.py-5 {
             </form>
 
             <script>
-             const form = document.getElementById('update-profile-form');
+              const form = document.getElementById('update-profile-form');
               const btn = document.getElementById('btn');
               const error_div = document.getElementById('error'); 
 
@@ -280,6 +280,10 @@ main.py-5 {
                       btn.innerHTML = 'Update Profile';
                       btn.disabled = false;
                     }, 2000);
+
+                    if(result.redirectTo) {
+                      window.location.href = result.redirectTo;
+                    }
                   } else {
                     throw new Error(result.message || result.error || 'Failed to update profile');
                   }
