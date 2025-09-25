@@ -148,7 +148,11 @@ export const changePassword = async (req, res) => {
     const isMatch = await bcrypt.compare(oldPassword, user.password);
     if (!isMatch) {
       req.flash("error", "Old password is incorrect");
-      return res.redirect("/auth/change-password");
+
+      const redirectTo = req.cookies.redirect_after_auth;
+      res.clearCookie('redirect_after_auth');
+
+      return res.redirect(redirectTo || "/auth/change-password");
     }
 
     const hashed = await bcrypt.hash(newPassword, 10);
@@ -161,11 +165,20 @@ export const changePassword = async (req, res) => {
     });
 
     req.flash("success", "Password changed successfully");
-    return res.redirect("/auth/change-password");
+
+    const redirectTo = req.cookies.redirect_after_auth;
+    console.log("Redirect to:", redirectTo);
+      res.clearCookie('redirect_after_auth');
+
+    return res.redirect(redirectTo || "/auth/change-password");
   } catch (error) {
     console.log("Password change error", error);
     req.flash("error", error.message);
-    return res.redirect("/auth/change-password");
+
+    const redirectTo = req.cookies.redirect_after_auth;
+      res.clearCookie('redirect_after_auth');
+
+    return res.redirect(redirectTo || "/auth/change-password");
   }
 };
 
