@@ -38,6 +38,11 @@ module.exports = {
       },
       connectTimeout: 60000,
     },
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000
+    },
     logging: false //console.log,    // Disable logging in production for performance
   }
 }; 
