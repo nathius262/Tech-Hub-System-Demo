@@ -1,10 +1,78 @@
-
-  <h1>Update Course</h1>
-  <form action="/admin/course/{{course.id}}" method="POST">
-    <input type="hidden" name="_method" value="PUT">
-    <!-- Add your form fields here -->
-    <div class="form-group">
-      <button type="submit">Update</button>
+<!-- Content Row -->
+        <div class="row">
+          <!-- Page Header -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800">Course Management</h1>
+      <a href="/admin/course" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-arrow-left fa-sm text-white-50 me-1"></i> Back to Courses List
+      </a>
     </div>
-  </form>
-  
+          <div class="col-12 mb-4">
+            <!-- Approach -->
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Update Course</h6>
+              </div>
+              <div class="card-body">
+                <form id="update-media" enctype="multipart/form-data" class="user needs-validation" action="/admin/course/{{course.id}}" method="POST"
+                  novalidate>
+                  <div class="form-group">
+                    <input type="text" name="title" class="form-control form-control-user mb-3 py-2" id="title"
+                      aria-describedby="title" placeholder="Course title..." value="{{course.title}}" required>
+                    <div class="invalid-feedback">
+                      Title is required
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <textarea name="description" class="form-control form-control-user mb-3 py-2" id="description"
+                      aria-describedby="description" placeholder="Course description..." required>{{course.description}}</textarea>
+                    <div class="invalid-feedback">
+                      Description is required
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="number" name="price" class="form-control form-control-user mb-3 py-2" id="price"
+                      aria-describedby="price" placeholder="Course price..." value="{{course.price}}" required>
+                    <div class="invalid-feedback">
+                      Price is required
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="number" name="duration" class="form-control form-control-user mb-3 py-2" id="duration"
+                      aria-describedby="duration" placeholder="Course duration..." value="{{course.duration}}" required>
+                    <div class="invalid-feedback">
+                      Duration is required
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <input type="file" accept="image/*" name="image_url" class="form-control form-control-user mb-3 py-2" id="image_url"
+                      aria-describedby="image_url" placeholder="Course image_url...">
+                    <div class="invalid-feedback">
+                      Image is required
+                    </div>
+                  </div>
+
+                  <hr>
+                  <ul id="error" class="text-danger col-12"></ul>
+
+                  <progress id="progressBar" style="display: none;"></progress>
+
+                  <div class="spinner-border col-12 d-none" id="status" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+
+                  <button type="submit" id="btn" class="btn btn-primary btn-user btn-block col-12">
+                    Update Course
+                  </button>
+                  <hr>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <script type="module" src="/assets/js/uploader.js"></script>
