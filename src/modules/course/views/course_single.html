@@ -1,9 +1,287 @@
+<main class="py-5">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/courses" class="text-decoration-none">Courses</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{course.title}}</li>
+      </ol>
+    </nav>
 
-  <h1>{{course.name}} || 'Course Details' %></h1>
-  <dl>
-    <!-- Add your detail fields here -->
-    <dt>ID</dt>
-    <dd>{{course.id}}</dd>
-  </dl>
-  <a href="/course">Back to list</a>
-  
+    <div class="row">
+      <!-- Course Main Content -->
+      <div class="col-lg-8">
+        <!-- Course Header -->
+        <div class="dashboard-card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-8">
+                <span class="badge bg-primary mb-2">{{course.category}}</span>
+                <h1 class="h2 mb-3">{{course.title}}</h1>
+                <p class="lead mb-4">{{course.description}}</p>
+                
+                <div class="d-flex align-items-center mb-3">
+                  <div class="me-4">
+                    <i class="fas fa-star text-warning me-1"></i>
+                    <span class="fw-bold">4.8</span>
+                    <span class="text-muted">(245 reviews)</span>
+                  </div>
+                  <div class="me-4">
+                    <i class="fas fa-users text-primary me-1"></i>
+                    <span class="fw-bold">1,254</span>
+                    <span class="text-muted">students</span>
+                  </div>
+                  <div>
+                    <i class="fas fa-clock text-primary me-1"></i>
+                    <span class="fw-bold">{{course.duration}} weeks</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 text-center">
+                <div class="p-4 bg-light rounded">
+                  <div class="h1 text-primary mb-2">${{course.price}}</div>
+                  <button class="btn btn-primary btn-lg w-100 mb-2">
+                    <i class="fas fa-shopping-cart me-2"></i>Enroll Now
+                  </button>
+                  <small class="text-muted">30-day money-back guarantee</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- What You'll Learn -->
+        <div class="dashboard-card mb-4">
+          <div class="card-header">
+            <h3 class="h5 m-0">What you'll learn</h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              {{#each course.objectives}}
+              <div class="col-md-6 mb-2">
+                <i class="fas fa-check text-success me-2"></i>
+                {{this}}
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+
+        <!-- Course Curriculum -->
+        <div class="dashboard-card mb-4">
+          <div class="card-header">
+            <h3 class="h5 m-0">Course Content</h3>
+          </div>
+          <div class="card-body">
+            <div class="accordion" id="courseAccordion">
+              {{#each course.curriculum}}
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{@index}}">
+                    <span class="fw-bold me-2">Week {{@index}}</span>
+                    {{this.title}}
+                  </button>
+                </h2>
+                <div id="collapse{{@index}}" class="accordion-collapse collapse" data-bs-parent="#courseAccordion">
+                  <div class="accordion-body">
+                    <ul class="list-unstyled">
+                      {{#each this.lessons}}
+                      <li class="mb-2">
+                        <i class="fas fa-play-circle text-primary me-2"></i>
+                        {{this}}
+                      </li>
+                      {{/each}}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+
+        <!-- Instructor -->
+        <div class="dashboard-card mb-4">
+          <div class="card-header">
+            <h3 class="h5 m-0">Instructor</h3>
+          </div>
+          <div class="card-body">
+            <div class="d-flex align-items-start">
+              <img src="https://via.placeholder.com/80x80/800020/ffffff?text=I" alt="Instructor" class="rounded-circle me-4">
+              <div>
+                <h4 class="h5 mb-1">Dr. Sarah Johnson</h4>
+                <p class="text-muted mb-2">Senior Web Developer & Educator</p>
+                <p class="mb-3">With over 10 years of experience in web development and teaching, Sarah has helped thousands of students launch their tech careers.</p>
+                <div class="d-flex text-muted">
+                  <div class="me-4">
+                    <i class="fas fa-star text-warning me-1"></i>
+                    <span>4.8 Instructor Rating</span>
+                  </div>
+                  <div class="me-4">
+                    <i class="fas fa-users me-1"></i>
+                    <span>12,540 Students</span>
+                  </div>
+                  <div>
+                    <i class="fas fa-play-circle me-1"></i>
+                    <span>8 Courses</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-4">
+        <!-- Course Features -->
+        <div class="dashboard-card mb-4">
+          <div class="card-header">
+            <h4 class="h6 m-0">This course includes</h4>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <i class="fas fa-play-circle text-primary me-2"></i>
+                42 hours on-demand video
+              </li>
+              <li class="mb-2">
+                <i class="fas fa-file-alt text-primary me-2"></i>
+                15 articles
+              </li>
+              <li class="mb-2">
+                <i class="fas fa-download text-primary me-2"></i>
+                25 downloadable resources
+              </li>
+              <li class="mb-2">
+                <i class="fas fa-infinity text-primary me-2"></i>
+                Full lifetime access
+              </li>
+              <li class="mb-2">
+                <i class="fas fa-mobile-alt text-primary me-2"></i>
+                Access on mobile and TV
+              </li>
+              <li class="mb-2">
+                <i class="fas fa-certificate text-primary me-2"></i>
+                Certificate of completion
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Student Reviews -->
+        <div class="dashboard-card">
+          <div class="card-header">
+            <h4 class="h6 m-0">Student Reviews</h4>
+          </div>
+          <div class="card-body">
+            <div class="text-center mb-3">
+              <div class="h1 text-primary mb-1">4.8</div>
+              <div class="text-warning mb-2">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <small class="text-muted">Course Rating • 245 reviews</small>
+            </div>
+            
+            <div class="border-top pt-3">
+              <div class="d-flex mb-3">
+                <img src="https://via.placeholder.com/40x40/800020/ffffff?text=U" alt="User" class="rounded-circle me-3" width="40">
+                <div>
+                  <div class="fw-bold mb-1">Michael Chen</div>
+                  <div class="text-warning small mb-1">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <p class="small text-muted mb-0">"This course completely transformed my career. The projects were challenging but incredibly rewarding!"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+.dashboard-card {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  background: white;
+}
+
+.dashboard-card .card-header {
+  background: white;
+  border-bottom: 1px solid #eaeaea;
+  padding: 1.25rem 1.5rem;
+}
+
+.dashboard-card .card-body {
+  padding: 1.5rem;
+}
+
+.btn-primary {
+  background-color: #800020;
+  border-color: #800020;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background-color: #67001a;
+  border-color: #67001a;
+}
+
+.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+.badge.bg-primary {
+  background-color: #800020 !important;
+}
+
+.breadcrumb {
+  background: transparent;
+  padding: 0;
+}
+
+.breadcrumb-item a {
+  color: #800020;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: rgba(128, 0, 32, 0.05);
+  color: #800020;
+}
+
+.accordion-button:focus {
+  border-color: #800020;
+  box-shadow: 0 0 0 0.2rem rgba(128, 0, 32, 0.25);
+}
+
+.text-primary {
+  color: #800020 !important;
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.rounded {
+  border-radius: 10px !important;
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: #4A4A4A;
+}
+</style>
