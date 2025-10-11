@@ -1,11 +1,40 @@
+<!-- Featured Courses -->
+<section id="courses" class="section-padding">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Our Courses</h2>
+            <p class="text-muted">Browse our most popular tech courses</p>
+        </div>
 
-  <h1>Course List</h1>
-  <ul>
-    {{#each courses}}
-      <li>
-        <a href="/course/{{this.id}}">{{this.id}}</a>
-      </li>
-    {{/each}}
-  </ul>
-  {{> pagination}}
-  
+        <div class="row g-4">
+
+            {{#each courses}}
+            <!-- Course Card {{this.id}} -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card course-card">
+                    <img src="https://images.unsplash.com/photo-1508830524289-0adcbe822b40?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1425" class="card-img-top"
+                        alt="{{this.title}}">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-primary">Beginner</span>
+                            <span class="text-muted">
+                               <i class="fas fa-clock ms-1"></i>
+                               {{this.duration}} weeks
+                            </span>
+                        </div>
+                        <h5 class="card-title">{{this.title}}</h5>
+                        <p class="card-text">{{this.description}}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold text-primary">${{this.price}}</span>
+                            <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        <!--pagination-->
+    </div>
+</section>
