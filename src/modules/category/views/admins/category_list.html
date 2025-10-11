@@ -1,0 +1,124 @@
+<main class="py-4">
+  <div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800">Category Management</h1>
+      <a href="/admin/category/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50 me-1"></i> Create New Category
+      </a>
+    </div>
+
+    <!-- Courses Table -->
+    <div class="dashboard-card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Created At</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each categories}}
+                <tr>
+                  <td>{{this.id}}</td>
+                  <td>{{this.name}}</td>
+                  <td>{{this.createdAt}}</td>
+                 
+                  <td>
+                    <div class="d-flex gap-2">
+                      <a href="/admin/category/{{this.id}}" class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-edit me-1"></i> Edit
+                      </a>
+                      <button type="click" class="btn btn-sm btn-outline-danger" 
+                        data-delete="category-{{this.id}}" data-name="{{this.name}}" 
+                        data-url="/admin/category/{{this.id}}">
+                        <i class="fas fa-trash me-1"></i> Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+.dashboard-card {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  background: white;
+}
+
+.table th {
+  font-weight: 600;
+  color: #4A4A4A;
+  border-top: none;
+  border-bottom: 2px solid #800020;
+  padding: 1rem 0.75rem;
+}
+
+.table td {
+  padding: 1rem 0.75rem;
+  vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(128, 0, 32, 0.05);
+}
+
+.btn-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.btn-primary {
+  background-color: #800020;
+  border-color: #800020;
+}
+
+.btn-primary:hover {
+  background-color: #67001a;
+  border-color: #67001a;
+}
+
+.btn-outline-primary {
+  color: #800020;
+  border-color: #800020;
+}
+
+.btn-outline-primary:hover {
+  background-color: #800020;
+  color: white;
+}
+
+.btn-outline-danger {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.text-gray-800 {
+  color: #4A4A4A !important;
+}
+
+.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+</style>
