@@ -26,7 +26,14 @@
               {{#each courses}}
                 <tr>
                   <td>{{this.id}}</td>
-                  <td>{{this.title}}</td>
+                  <td>
+                    <div class="row">
+                      <div>{{this.title}}</div>
+                      {{#each this.categories}}
+                      <div class="text-muted small">{{this.name}}</div>
+                      {{/each}}
+                    </div>
+                  </td>
                   <td>${{this.price}}</td>
                   <td class=""> 
                     <span class="">

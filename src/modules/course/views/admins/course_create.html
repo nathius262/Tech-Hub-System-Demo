@@ -46,6 +46,18 @@
                       Duration is required
                     </div>
                   </div>
+
+                  <div class="form-group">
+                    <select name="category_id" class="form-control form-control-user mb-3 py-2" id="category_id" required>
+                      <option value="" disabled selected>Select Category</option>
+                      {{#each categories}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                      {{/each}}
+                    </select>
+                    <div class="invalid-feedback">
+                      Category is required
+                    </div>
+                  </div>
                   
                   <div class="form-group">
                     <input type="file" accept="image/*" name="image_url" class="form-control form-control-user mb-3 py-2" id="image_url"
