@@ -55,7 +55,7 @@ body {
 }
 
 .hero-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.splash.com/pexels-photo-3861969.jpeg');
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/assets/img/hero.jpg') no-repeat center center;
     background-size: cover;
     background-position: center;
     padding: 7rem 0;

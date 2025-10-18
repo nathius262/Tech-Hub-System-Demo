@@ -3,7 +3,7 @@
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb" class="mb-4">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/courses" class="text-decoration-none">Courses</a></li>
+        <li class="breadcrumb-item"><a href="/course" class="text-decoration-none">Courses</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{course.title}}</li>
       </ol>
     </nav>
@@ -13,6 +13,9 @@
       <div class="col-lg-8">
         <!-- Course Header -->
         <div class="dashboard-card mb-4">
+          <div class="card-img-top">
+            <img src="{{course.image_url}}" alt="{{course.title}}" class="img-fluid rounded-top">
+          </div>
           <div class="card-body">
             <div class="row">
               <div class="col-md-8">
@@ -37,69 +40,11 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-4 text-center">
-                <div class="p-4 bg-light rounded">
-                  <div class="h1 text-primary mb-2">${{course.price}}</div>
-                  <button class="btn btn-primary btn-lg w-100 mb-2">
-                    <i class="fas fa-shopping-cart me-2"></i>Enroll Now
-                  </button>
-                  <small class="text-muted">30-day money-back guarantee</small>
-                </div>
-              </div>
             </div>
           </div>
         </div>
 
-        <!-- What You'll Learn -->
-        <div class="dashboard-card mb-4">
-          <div class="card-header">
-            <h3 class="h5 m-0">What you'll learn</h3>
-          </div>
-          <div class="card-body">
-            <div class="row">
-              {{#each course.objectives}}
-              <div class="col-md-6 mb-2">
-                <i class="fas fa-check text-success me-2"></i>
-                {{this}}
-              </div>
-              {{/each}}
-            </div>
-          </div>
-        </div>
-
-        <!-- Course Curriculum -->
-        <div class="dashboard-card mb-4">
-          <div class="card-header">
-            <h3 class="h5 m-0">Course Content</h3>
-          </div>
-          <div class="card-body">
-            <div class="accordion" id="courseAccordion">
-              {{#each course.curriculum}}
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{@index}}">
-                    <span class="fw-bold me-2">Week {{@index}}</span>
-                    {{this.title}}
-                  </button>
-                </h2>
-                <div id="collapse{{@index}}" class="accordion-collapse collapse" data-bs-parent="#courseAccordion">
-                  <div class="accordion-body">
-                    <ul class="list-unstyled">
-                      {{#each this.lessons}}
-                      <li class="mb-2">
-                        <i class="fas fa-play-circle text-primary me-2"></i>
-                        {{this}}
-                      </li>
-                      {{/each}}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              {{/each}}
-            </div>
-          </div>
-        </div>
-
+        
         <!-- Instructor -->
         <div class="dashboard-card mb-4">
           <div class="card-header">
@@ -134,6 +79,17 @@
 
       <!-- Sidebar -->
       <div class="col-lg-4">
+
+        <div class="col mb-4 text-center">
+            <div class="p-4 bg-light rounded">
+              <div class="h1 text-primary mb-2">${{course.price}}</div>
+              <button class="btn btn-primary btn-lg w-100 mb-2">
+                <i class="fas fa-shopping-cart me-2"></i>Enroll Now
+              </button>
+              <small class="text-muted">30-day money-back guarantee</small>
+            </div>
+          </div>
+
         <!-- Course Features -->
         <div class="dashboard-card mb-4">
           <div class="card-header">
