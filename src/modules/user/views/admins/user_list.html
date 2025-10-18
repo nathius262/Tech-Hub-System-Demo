@@ -1,13 +1,31 @@
+<style>
+    .badge{
+        display: inline-block;
+        padding: 0.25em 0.4em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: 0.25rem;
+    }
 
-    <!-- Sidebar -->
-    {{> admin_sidebar}}
-    <!-- End of Sidebar -->
+    .badge-info {
+        background-color: #17a2b8;
+        color: #fff;
+    }
+    
+    .badge-secondary {
+        background-color: #6c757d;
+        color: #fff;
+    }
+    
+</style>
+       
+       
+       <div class="main-content" id="main-content">
 
-
-        <div class="main-content" id="main-content">
-            <!-- Topbar -->
-            {{> admin_navbar}}
-            <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
@@ -18,7 +36,6 @@
 
                 <!-- Content Row -->
                 <div class="row">
-                    {{> admin/usernav}}
                 </div>
                 
                 <!-- Content Row -->
