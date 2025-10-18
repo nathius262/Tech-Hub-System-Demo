@@ -1,6 +1,8 @@
 import { check, validationResult } from 'express-validator';
 import dotenv from 'dotenv';
 import * as courseService from '../modules/course/services/Course.service.js';
+import * as contactService from '../modules/public/services/Contact.service.js';
+import {sendContactNotification} from '../utils/email.js';
 
 // Derive the equivalent of __dirname
 import { fileURLToPath } from 'url';
@@ -49,5 +51,22 @@ const contact_view = async (req, res) => {
     }
 }
 
+const create_contact_form = async (req, res) => {
+    try {
+        //handle form submission
+        const contact_form = await contactService.create(req.body);
+        //send notification email to admin
+        await sendContactNotification({
+            userName: `${contact_form.first_name} ${contact_form.last_name}`,
+            userEmail: contact_form.email,
+            message: contact_form.message
+        });
 
-export {index_view, about_view, contact_view}
+        res.status(201).json({message: "Contact form submitted successfully", contact_form, redirectTo : '/contact'});
+    } catch (error) {
+        res.status(500).json({message: "Internal Serval Error"});
+    }
+}
+
+
+export {index_view, about_view, contact_view, create_contact_form}
